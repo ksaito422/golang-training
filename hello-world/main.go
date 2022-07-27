@@ -16,4 +16,14 @@ func main() {
 
 	fmt.Println("Hello World")
 	fmt.Println(num1, num2, num3, num5)
+
+	condition := true
+	x := 1
+	if condition {
+		// コードブロックの内側で変数xを再宣言できる
+		x := 2
+		fmt.Println("x = ", x)
+	}
+	fmt.Println("x = ", x)
+
 }
