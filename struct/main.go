@@ -20,4 +20,7 @@ func main() {
 	fmt.Println("b3 = ", *b3)
 
 	Json()
+	person := NewPerson("田中", "太朗")
+	fmt.Println(person.FirstName)
+	fmt.Println(person.LastName)
 }
