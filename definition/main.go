@@ -20,4 +20,6 @@ func main() {
 	fmt.Println(itemCD, sizeCD, colorCD)
 
 	fmt.Println(Season.Price(Peak, 200))
+
+	Secret()
 }
