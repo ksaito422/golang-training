@@ -18,4 +18,6 @@ func main() {
 
 	itemCD, sizeCD, colorCD := SKUCode.ItemCD("T01230101"), SKUCode.SizeCD("T01230101"), SKUCode.ColorCD("T01230101")
 	fmt.Println(itemCD, sizeCD, colorCD)
+
+	fmt.Println(Season.Price(Peak, 200))
 }
