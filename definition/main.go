@@ -15,4 +15,7 @@ func main() {
 	fmt.Println(NationalRoute.String(401))
 	fmt.Println(NationalRoute.String(402))
 	fmt.Println(NationalRoute.String(403))
+
+	itemCD, sizeCD, colorCD := SKUCode.ItemCD("T01230101"), SKUCode.SizeCD("T01230101"), SKUCode.ColorCD("T01230101")
+	fmt.Println(itemCD, sizeCD, colorCD)
 }
