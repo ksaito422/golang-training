@@ -1,7 +1,11 @@
 package main
 
-import ()
+import (
+	"fmt"
+)
 
 func main() {
 	Alert()
+	normalize, _ := NormalizeString("Hello")
+	fmt.Println(normalize)
 }

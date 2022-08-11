@@ -2,7 +2,10 @@ module interface
 
 go 1.18
 
-require github.com/gen2brain/beeep v0.0.0-20220518085355-d7852edf42fc
+require (
+	github.com/gen2brain/beeep v0.0.0-20220518085355-d7852edf42fc
+	golang.org/x/text v0.3.7
+)
 
 require (
 	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
