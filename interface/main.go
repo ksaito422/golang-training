@@ -8,4 +8,6 @@ func main() {
 	Alert()
 	normalize, _ := NormalizeString("Hello")
 	fmt.Println(normalize)
+
+	Any()
 }
