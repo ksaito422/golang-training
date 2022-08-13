@@ -4,4 +4,5 @@ import ()
 
 func main() {
 	Decode()
+	Unmarshal()
 }
