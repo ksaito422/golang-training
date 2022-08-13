@@ -12,6 +12,7 @@ type ip struct {
 	URL    string `json:"url"`
 }
 
+// 継続的にデータが流れてくるようなストリーミングデータの操作をサポートしているのが、Decode
 func Decode() {
 	f, err := os.Open("ip.json")
 	if err != nil {

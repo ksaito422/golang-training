@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+// []byte型を扱う場合は、json.Unmarshal()
 func Unmarshal() {
 	s := `{"origin":"255.255.255.255","url":"https://httpbin.org/get"}`
 	var resp ip
