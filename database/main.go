@@ -2,14 +2,17 @@ package main
 
 import (
 	"database/sql"
-	_ "github.com/jackc/pgx/v4/stdlib"
 	"log"
+
+	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
 func main() {
 	db := dbOpen()
 	SelectAll(db)
 	Select(db, "0001")
+
+	UpdateUser(db, "taro", "0002")
 }
 
 func dbOpen() *sql.DB {
