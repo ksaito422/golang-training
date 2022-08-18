@@ -16,4 +16,6 @@ func main() {
 	s := "文字列"
 	c := 1 + 2i
 	log.Printf("%d, %sなどを使って変数出力もできます。%vはどんな型でも表示します", n, s, c)
+
+	JsonLog()
 }
