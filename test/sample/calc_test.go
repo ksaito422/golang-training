@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"log"
 	"testing"
 )
 
@@ -41,8 +42,18 @@ func TestCalc(t *testing.T) {
 		},
 	}
 
+	log.Println(">> テスト関数の実行前")
+	defer func() {
+		log.Println(">> テスト関数の実行後")
+	}()
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			log.Println(">> テストケースの実行前")
+			defer func() {
+				log.Println(">> テストケースの実行後")
+			}()
+
 			got, err := Calc(tt.args.a, tt.args.b, tt.args.operator)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Calc() error = %v, wantErr %v", err, tt.wantErr)
@@ -53,4 +64,20 @@ func TestCalc(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	defer teardown()
+
+	m.Run()
+}
+
+func setup() {
+	log.Println(">> テスト全体の実行前")
+}
+
+func teardown() {
+	log.Println(">> テスト全体の実行後")
 }
