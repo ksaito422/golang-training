@@ -29,3 +29,4 @@ NOTE: swagger と似たようなニュアンスか？
 [組み込み以外の便利な型](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
 [メッセージ型の Go への変換先](https://developers.google.com/protocol-buffers/docs/reference/go-generated)
 [メソッド定義がどういうコードに変換されるのか](https://grpc.io/docs/languages/go/generated-code/)
+[gRPC のサーバーリフレクションについて](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md)
