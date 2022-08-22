@@ -51,3 +51,4 @@ HTTP/2 のフレームフォーマットの中でもタイプフィールドと�
 [メッセージ型の Go への変換先](https://developers.google.com/protocol-buffers/docs/reference/go-generated)
 [メソッド定義がどういうコードに変換されるのか](https://grpc.io/docs/languages/go/generated-code/)
 [gRPC のサーバーリフレクションについて](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md)
+[gRPC のステータスコード](https://grpc.io/docs/guides/error/#error-status-codes)
