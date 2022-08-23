@@ -17,6 +17,7 @@ import (
 	// "google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 	// "google.golang.org/grpc/status"
+	"google.golang.org/grpc/metadata"
 )
 
 type myServer struct {
@@ -75,6 +76,20 @@ func (s *myServer) Hello(ctx context.Context, req *hellopb.HelloRequest) (*hello
 	// })
 	// err := stat.Err()
 
+	if md, ok := metadata.FromIncomingContext(ctx); ok {
+		log.Println(md)
+	}
+
+	headerMD := metadata.New(map[string]string{"type": "unary", "from": "server", "in": "header"})
+	if err := grpc.SetHeader(ctx, headerMD); err != nil {
+		return nil, err
+	}
+
+	trailerMD := metadata.New(map[string]string{"type": "unary", "from": "server", "in": "trailer"})
+	if err := grpc.SetTrailer(ctx, trailerMD); err != nil {
+		return nil, err
+	}
+
 	// リクエストからnameフィールドを取り出して
 	// "Hello, [名前]!"というレスポンスを返す
 	return &hellopb.HelloResponse{
@@ -83,6 +98,23 @@ func (s *myServer) Hello(ctx context.Context, req *hellopb.HelloRequest) (*hello
 }
 
 func (s *myServer) HelloServerStream(req *hellopb.HelloRequest, stream hellopb.GreetingService_HelloServerStreamServer) error {
+	if md, ok := metadata.FromIncomingContext(stream.Context()); ok {
+		log.Println(md)
+	}
+
+	// (パターン1)すぐにヘッダーを送信したい場合
+	headerMD := metadata.New(map[string]string{"type": "stream", "from": "server", "in": "header"})
+	if err := stream.SendHeader(headerMD); err != nil {
+		return err
+	}
+	// (パターン2)本来ヘッダーを送るタイミングで送りたい場合
+	if err := stream.SetHeader(headerMD); err != nil {
+		return err
+	}
+
+	trailerMD := metadata.New(map[string]string{"type": "stream", "from": "server", "in": "trailer"})
+	stream.SetTrailer(trailerMD)
+
 	resCount := 5
 	for i := 0; i < resCount; i++ {
 		if err := stream.Send(&hellopb.HelloResponse{
