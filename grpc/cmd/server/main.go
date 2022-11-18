@@ -77,6 +77,16 @@ func (s *myServer) Hello(ctx context.Context, req *hellopb.HelloRequest) (*hello
 
 	// リクエストからnameフィールドを取り出して
 	// "Hello, [名前]!"というレスポンスを返す
+
+	// oneofで渡ってくる構造体の判定
+	switch v := req.Namae.(type) {
+	case *hellopb.HelloRequest_LastName:
+		println(v.LastName)
+	case *hellopb.HelloRequest_FirstName:
+		println(v.FirstName)
+	default:
+	}
+
 	return &hellopb.HelloResponse{
 		Message: fmt.Sprintf("Hello, %s!", req.GetName()),
 	}, nil
