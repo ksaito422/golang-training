@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "pkg/grpc";
+
+package app;
+
+service BackendService {
+	rpc Hello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+	oneof name {
+		string full_name = 1;
+		string last_name = 2;
+		string first_name = 3;
+	}
+}
+
+message HelloResponse {
+	string message = 1;
+}
