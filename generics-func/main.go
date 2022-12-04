@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"golang.org/x/xerrors"
 )
@@ -39,24 +40,19 @@ func main() {
 	}
 	if err := validateParam(paramA); err != nil {
 		fmt.Printf("Error paramA:%v\n", err)
+		os.Exit(1)
 	}
 	fmt.Printf("ID: %v, Name: %v, Age: %v\n", paramA.User.ID, paramA.User.Name, *paramA.User.Age)
 
 	if err := validateParam(paramB); err != nil {
 		fmt.Printf("Error paramB: %v\n", err)
+		os.Exit(1)
 	}
 	fmt.Printf("ID: %v, Name: %v, Age: %v, Address: %v\n", paramB.User.ID, paramB.User.Name, *paramB.User.Age, *paramB.Country)
 }
 
 func validateParam[T A | B](param T) error {
-	if err := validateParamInternal(param); err != nil {
-		return err
-	}
-	return nil
-}
-
-func validateParamInternal(param any) error {
-	switch v := param.(type) {
+	switch v := any(param).(type) {
 	case A:
 		if err := validateUserAge(v.User); err != nil {
 			return err
@@ -67,7 +63,7 @@ func validateParamInternal(param any) error {
 			return err
 		}
 		if v.Country == nil {
-			return xerrors.Errorf("Countryは必須です: %v", v)
+			return xerrors.Errorf("Countryは必須です: %+v", v)
 		}
 	}
 
